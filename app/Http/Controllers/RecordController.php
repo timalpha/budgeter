@@ -5,9 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Record;
-use App\Http\Requests\CreateRecord;
-use App\Policies\RecordPolicy;
-//use App\Repositories\RecordRepository;
+use App\Http\Requests\RecordRequest;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -45,7 +43,7 @@ class RecordController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CreateRecord $request)
+    public function store(RecordRequest $request)
     {
         Record::create($request->all());
         
@@ -58,10 +56,10 @@ class RecordController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(RecordPolicy $id, Request $request)
+    public function destroy($id)
     {
-        $this->authorize('delete', $id);
-        $id->delete();
+        $this->authorize($id);
+        $this->id->delete();
         return redirect('records');
     }
 }
