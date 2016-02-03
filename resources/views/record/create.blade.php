@@ -25,7 +25,7 @@
         </label>
     </div>
     <button type="submit" class="btn btn-primary">Add</button>
-</form>
+{!! Form::close() !!}
 </div>
 @stop
 @section('footer')
