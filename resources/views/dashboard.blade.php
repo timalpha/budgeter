@@ -20,11 +20,11 @@
                         {{ $item->amount }}
                     </th>
                     <th>
-                        <form action="/records/{{ $item->id }}" method="POST">
+                        {!! Form::open(['action' => ['RecordController@destroy', $item->id]]) !!}
                             {{ csrf_field() }}
                             {{ method_field('DELETE') }}
                             <button type="submit" class="btn btn-secondary btn-sm"><i class="fa fa-btn fa-trash"></i></button>
-				        </form>
+				        {!! Form::close() !!}
                     </th>
                 </tr>
             @endforeach
