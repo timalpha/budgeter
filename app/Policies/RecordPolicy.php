@@ -7,7 +7,7 @@ use App\Bill;
 
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class BillPolicy
+class RecordPolicy
 {
     use HandlesAuthorization;
 
