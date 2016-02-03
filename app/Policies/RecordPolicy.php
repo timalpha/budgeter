@@ -11,10 +11,13 @@ class RecordPolicy
 {
     use HandlesAuthorization;
 
+
     /**
-     * Create a new policy instance.
-     *
-     * @return void
+     * Determine if the given record can be deleted by the user.
+     * 
+     * @param  User $user
+     * @param  Record $record
+     * @return bool
      */
     public function destroy(User $user, Record $record)
     {
