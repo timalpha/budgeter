@@ -16,8 +16,8 @@ class RecordPolicy
      *
      * @return void
      */
-    public function destroy(User $user, Bill $bill)
+    public function destroy(User $user, Record $record)
     {
-        return $user->id === $bill->user_id;
+        return $user->id === $record->user_id;
     }
 }
