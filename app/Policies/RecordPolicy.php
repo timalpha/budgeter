@@ -3,7 +3,7 @@
 namespace App\Policies;
 
 use App\User;
-use App\Bill;
+use App\Record;
 
 use Illuminate\Auth\Access\HandlesAuthorization;
 

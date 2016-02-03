@@ -6,7 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Record;
 use App\Http\Requests\CreateRecord;
-// use App\Repositories\RecordRepository;
+use App\Policies\RecordPolicy;
+//use App\Repositories\RecordRepository;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -57,9 +58,9 @@ class RecordController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request, Record $id)
+    public function destroy(RecordPolicy $id, Request $request)
     {
-        $this->authorize('destroy', $id);
+        $this->authorize('delete', $id);
         $id->delete();
         return redirect('records');
     }

@@ -6,9 +6,9 @@
     @include('common.errors')
 <div class="card card-block">
 <!-- <form class="form" action="/records" method="POST"> -->
-    {!! Form::open(array('action' => 'RecordController@store')) !!}
+    {!! Form::open(['action' => 'RecordController@store']) !!}
     <fieldset class="form-group">
-        {!! Form::text('name', null, ['class' => 'form-control', 'placeholder' => 'Label']) !!}
+        {!! Form::text('label', null, ['class' => 'form-control', 'placeholder' => 'Label']) !!}
     </fieldset>
     <fieldset class="form-group">
         <div class="input-group">
@@ -21,7 +21,7 @@
     </div>
     <div class="checkbox">
         <label>
-            {!! Form::checkbox('recurring', null) !!} Recurring
+            {!! Form::checkbox('recurring', true) !!} Recurring
         </label>
     </div>
     <button type="submit" class="btn btn-primary">Add</button>
