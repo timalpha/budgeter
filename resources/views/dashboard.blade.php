@@ -20,7 +20,7 @@
                         {{ $item->amount }}
                     </th>
                     <th>
-                        {{ Form::open(['route' => ['records.destroy', $item->id], 'method' => 'delete']) }}
+                        {{ Form::open(['url' => ['/record', $item->id], 'method' => 'delete']) }}
                             <button type="submit" class="btn btn-secondary btn-sm"><i class="fa fa-btn fa-trash"></i></button>
 				        {!! Form::close() !!}
                     </th>
@@ -35,6 +35,6 @@
         </table>
     </div>
     <div class="card card-block">
-        <p><a href="/records/create" class="btn btn-success">Add record</a></p>
+        <p><a href="/record/create" class="btn btn-success">Add record</a></p>
     </div>
 @stop

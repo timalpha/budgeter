@@ -30,11 +30,11 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('/', function () {
         return view('welcome');
     });
-    /*
+    
+    Route::get('/records', 'RecordController@index');
     Route::get('/record/create', 'RecordController@create');
     Route::post('/record/create', 'RecordController@store');
-    Route::delete('/record/{id}', 'RecordController@destroy');
-    */
-    Route::resource('records', 'RecordController');
+    Route::delete('/record/{record}', 'RecordController@destroy');
+    // Route::resource('records', 'RecordController');
 });
     

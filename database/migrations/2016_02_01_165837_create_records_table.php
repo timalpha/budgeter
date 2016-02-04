@@ -15,7 +15,7 @@ class CreateRecordsTable extends Migration
         Schema::create('records', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
-            $table->integer('user_id')->unsigned()-nullable();
+            $table->integer('user_id')->unsigned();
             $table->date('start_date');
             $table->boolean('recurring');
             $table->string('label', 64);
