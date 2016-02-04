@@ -30,8 +30,6 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('/', function () {
         return view('welcome');
     });
-    
-    Route::get('dashboard', 'DashboardController@index');
     /*
     Route::get('/record/create', 'RecordController@create');
     Route::post('/record/create', 'RecordController@store');

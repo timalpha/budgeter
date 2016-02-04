@@ -21,7 +21,7 @@
     </div>
     <div class="checkbox">
         <label>
-            {!! Form::checkbox('recurring', true) !!} Recurring
+            {!! Form::checkbox('recurring', true, false) !!} Recurring
         </label>
     </div>
     <button type="submit" class="btn btn-primary">Add</button>

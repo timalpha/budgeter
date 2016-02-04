@@ -5,26 +5,30 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Record;
-use App\Http\Requests\RecordRequest;
+use App\Repositories\RecordRepository;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 class RecordController extends Controller
 {
-    public function __construct()
+    
+    protected $records;
+    
+    public function __construct(RecordRepository $records)
     {
         $this->middleware('auth');
         
+        $this->records = $records;
     }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-
+        return view('dashboard', ['items' => $this->records->forUser($request->user()), 'total' => $this->records->forUser($request->user())->sum('amount')]);
     }
 
     /**
@@ -43,11 +47,30 @@ class RecordController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(RecordRequest $request)
+    public function store(Request $request)
     {
-        Record::create($request->all());
+        $this->validate($request, [
+            'label' => 'required|max:64',
+            'amount' => 'required|numeric',
+            'start_date' => 'required|date',
+            'recurring' => 'boolean',
+        ]);
+        if($request->recurring)
+        {
+            $recurring = true;
+        }
+        else
+        {
+            $recurring = false;
+        }
+        $request->user()->records()->create([
+            'label' => $request->label,
+            'amount' => $request->amount,
+            'start_date' => $request->start_date,
+            'recurring' => $recurring,  
+        ]);
         
-        return redirect('dashboard');
+        return redirect('/records');
     }
 
     /**
@@ -56,10 +79,10 @@ class RecordController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, Record $record)
     {
-        $this->authorize($id);
-        $this->id->delete();
-        return redirect('records');
+        $this->authorize('destroy', $record);
+        $record->delete();
+        return redirect('/records');
     }
 }

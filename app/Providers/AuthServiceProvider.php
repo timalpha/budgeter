@@ -3,7 +3,7 @@
 namespace App\Providers;
 
 use App\Record;
-use App\RecordPolicy;
+use App\Policies\RecordPolicy;
 
 use Illuminate\Contracts\Auth\Access\Gate as GateContract;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;

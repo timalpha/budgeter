@@ -16,7 +16,7 @@
             <ul class="nav navbar-nav">
 @if (Auth::user())
                 <li class="nav-item">
-                    <a class="nav-link" href="/dashboard">Dashboard</a>
+                    <a class="nav-link" href="/records">Dashboard</a>
                 </li>
 @endif
                 <ul class="nav nav-inline pull-xs-right">

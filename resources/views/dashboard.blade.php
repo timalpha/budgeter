@@ -20,9 +20,7 @@
                         {{ $item->amount }}
                     </th>
                     <th>
-                        {!! Form::open(['action' => ['RecordController@destroy', $item->id]]) !!}
-                            {{ csrf_field() }}
-                            {{ method_field('DELETE') }}
+                        {{ Form::open(['route' => ['records.destroy', $item->id], 'method' => 'delete']) }}
                             <button type="submit" class="btn btn-secondary btn-sm"><i class="fa fa-btn fa-trash"></i></button>
 				        {!! Form::close() !!}
                     </th>
