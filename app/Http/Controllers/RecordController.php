@@ -5,21 +5,17 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Record;
-use App\Repositories\RecordRepository;
+use App\User;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 class RecordController extends Controller
 {
-    
-    protected $records;
-    
-    public function __construct(RecordRepository $records)
+    public function __construct()
     {
         $this->middleware('auth');
-        
-        $this->records = $records;
+
     }
     /**
      * Display a listing of the resource.
@@ -28,7 +24,12 @@ class RecordController extends Controller
      */
     public function index(Request $request)
     {
-        return view('dashboard', ['items' => $this->records->forUser($request->user()), 'total' => $this->records->forUser($request->user())->sum('amount')]);
+        $items = $request->user()->records;
+        $total = $items->sum('amount');
+        return view('dashboard', [
+            'items' => $items,
+            'total' => $total,
+            ]);
     }
 
     /**
