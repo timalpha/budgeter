@@ -2,10 +2,13 @@
 
 namespace App;
 
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
+    use Notifiable;
+
     /**
      * The attributes that are mass assignable.
      *
@@ -16,16 +19,20 @@ class User extends Authenticatable
     ];
 
     /**
-     * The attributes excluded from the model's JSON form.
+     * The attributes that should be hidden for arrays.
      *
      * @var array
      */
     protected $hidden = [
         'password', 'remember_token',
     ];
-    
-    public function records()
+
+    public function invoices()
     {
-        return $this->hasMany(Record::class);
+        return $this->hasMany('App\Invoice');
+    }
+    public function debt()
+    {
+        return $this->hasMany('App\Debt');
     }
 }
