@@ -13,36 +13,46 @@
         @yield('header')
     </head>
     <body>
-        <nav class="navbar navbar-full navbar-light bg-faded">
-            <div class="container">
-            <h1 class="navbar-brand">{{ config('app.name') }}</h1>
-            <ul class="nav navbar-nav">
-                @if (Auth::user())
-                    <li class="nav-item"><a class="nav-link" href="/invoices">Invoices</a></li>
-                @endif
-                <ul class="nav nav-inline pull-right">
+        <nav class="navbar navbar-dark navbar-fixed-top bg-inverse">
+          <button type="button" class="navbar-toggler hidden-sm-up" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar" aria-label="Toggle navigation"></button>
+          <a class="navbar-brand" href="/">{{ config('app.name') }}</a>
+          <div id="navbar">
+            <nav class="nav navbar-nav float-xs-left">
+              <a class="nav-item nav-link" href="#">Dashboard</a>
+              <a class="nav-item nav-link" href="#">Settings</a>
+              <a class="nav-item nav-link" href="#">Profile</a>
+              <a class="nav-item nav-link" href="#">Help</a>
+            </nav>
+            <nav class="nav nav-inline pull-right">
                 @if (Auth::guest())
-                    <li class="nav-item">
                         <a class="nav-link" href="login"><i class="fa fa-btn fa-sign-in"></i> Login</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="register"><i class="fa fa-btn fa-user"></i> Register</a>
-                    </li>        
+                        <a class="nav-link" href="register"><i class="fa fa-btn fa-user"></i> Register</a> 
                 @else
-                    <li class="nav-item">
                         {{ Form::open(['url' => ['logout'], 'method' => 'logout']) }}
                         <button class="nav-link" type="submit"><i class="fa fa-btn fa-sign-out"></i> Logout</button>
                         {!! Form::close() !!}
-                    </li>
                 @endif
                 </ul>
-            </ul>
-            </div>
+          </div>
         </nav>
+
         <div class="container-fluid">
-            <div class="row">
+          <div class="row">
+            <div class="col-sm-3 col-md-2 sidebar">
+              <ul class="nav nav-sidebar">
+                <li class="active"><a class="nav-link" href="/invoices">Invoices <span class="sr-only">(current)</span></a></li>
+                <li><a class="nav-link" href="#">Debt</a></li>
+            </ul>
+            <ul class="nav nav-sidebar">
+                <li><a class="nav-link" href="#">Reports</a></li>
+                <li><a class="nav-link" href="#">Analytics</a></li>
+                <li><a class="nav-link" href="#">Export</a></li>
+              </ul>
+            </div>
+            <div class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 main">
                 @yield('content')
             </div>
+          </div>
         </div>
         <script src="{{ elixir('js/app.js') }}"></script>
         @yield('footer')
