@@ -6,3 +6,8 @@
 Homestead.json
 Homestead.yaml
 .env
+composer.lock
+yarn.lock
+public/build
+public/css
+public/js

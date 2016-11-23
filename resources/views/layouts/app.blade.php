@@ -39,8 +39,11 @@
             </ul>
             </div>
         </nav>
-        
-        @yield('content')
+        <div class="container-fluid">
+            <div class="row">
+                @yield('content')
+            </div>
+        </div>
         <script src="{{ elixir('js/app.js') }}"></script>
         @yield('footer')
     </body>

@@ -11,4 +11,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/invoice/create', 'InvoiceController@create');
     Route::post('/invoice/create', 'InvoiceController@store');
     Route::delete('/invoice/{invoice}', 'InvoiceController@destroy');
+    Route::get('home', function() {
+        return view('home');
+    });
 });
