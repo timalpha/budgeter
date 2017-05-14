@@ -1,5 +1,5 @@
 ## Budgeter
-Budgeting webapp written in PHP using Laravel 5.3 framework.
+Budgeting webapp written in PHP using Laravel 5.4 framework.
 
 
 #### Install
